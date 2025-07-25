@@ -1,0 +1,30 @@
++---------------------+
+|    BatchConfig      |               << Configuration >>
++---------------------+
+| + reader(): FlatFileItemReader<Transaction>
+| + writer(TransactionRepository): RepositoryItemWriter<Transaction>
+| + step1(...): Step
+| + job(...): Job
++---------------------+
+            |
+            | uses
+            ▼
++---------------------+               << Entity >>
+|    Transaction      |
++---------------------+
+| - accountNumber: String
+| - trxAmount: BigDecimal
+| - description: String
+| - trxDate: LocalDate
+| - trxTime: LocalTime
+| - customerId: String
++---------------------+
+            ▲
+            | uses
+            |
++-----------------------------+       << Repository >>
+|  TransactionRepository      |
++-----------------------------+
+| + save(Transaction): Transaction
+| + findBy...(): ...
++-----------------------------+
