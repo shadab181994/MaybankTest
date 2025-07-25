@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  batch:
+    jdbc:
+      initialize-schema: always
+    initialize-schema: always
+
+input:
+  file:
+    path: classpath:datasource.txt
+
+logging:
+  level:
+    org:
+      springframework:
+        batch: DEBUG
+server:
+  port: 8085

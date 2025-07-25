@@ -1,7 +1,6 @@
 package org.maybank;
 
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -11,14 +10,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TransactEaseApplication implements CommandLineRunner {
+public class TransactApplication implements CommandLineRunner {
 
     @Autowired
     private JobLauncher jobLauncher;
     @Autowired
     private Job importTransactionJob;
     public static void main(String[] args) {
-        SpringApplication.run(TransactEaseApplication.class, args);
+        SpringApplication.run(TransactApplication.class, args);
     }
 
     @Override
