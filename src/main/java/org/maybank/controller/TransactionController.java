@@ -2,7 +2,7 @@ package org.maybank.controller;
 
 import jakarta.persistence.OptimisticLockException;
 import lombok.RequiredArgsConstructor;
-import org.maybank.TransactionDTO;
+import org.maybank.dto.TransactionDTO;
 import org.maybank.entity.Transaction;
 import org.maybank.repository.TransactionRepository;
 

@@ -1,4 +1,4 @@
-package org.maybank;
+package org.maybank.dto;
 
 import lombok.Data;
 
