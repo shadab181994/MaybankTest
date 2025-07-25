@@ -1,30 +1,48 @@
 +---------------------+
-|    BatchConfig      |               << Configuration >>
+| Transaction         |
 +---------------------+
-| + reader(): FlatFileItemReader<Transaction>
-| + writer(TransactionRepository): RepositoryItemWriter<Transaction>
-| + step1(...): Step
-| + job(...): Job
+| - id: Long          |
+| - customerId: String|
+| - accountNumber: String |
+| - description: String   |
+| - version: Integer      |
 +---------------------+
-            |
-            | uses
-            ▼
-+---------------------+               << Entity >>
-|    Transaction      |
+| +getters/setters     |
 +---------------------+
-| - accountNumber: String
-| - trxAmount: BigDecimal
-| - description: String
-| - trxDate: LocalDate
-| - trxTime: LocalTime
-| - customerId: String
+
 +---------------------+
-            ▲
-            | uses
-            |
-+-----------------------------+       << Repository >>
-|  TransactionRepository      |
-+-----------------------------+
-| + save(Transaction): Transaction
-| + findBy...(): ...
-+-----------------------------+
+| TransactionDTO      |
++---------------------+
+| - description: String |
++---------------------+
+| +getDescription()     |
+| +setDescription()     |
++---------------------+
+
++------------------------------+
+| TransactionRepository        |
++------------------------------+
+| +findByCustomerId(String)    |
+| +searchByKeyword(String)     |
+| +findById(Long)              |
+| +findAll(Pageable)           |
+|           |
++------------------------------+
+
++------------------------------+
+| TransactionController        |
++------------------------------+
+| - repository: TransactionRepository |
++------------------------------+
+| +getAll(page, size, keyword, customerId): Page<Transaction> |
+| +updateDescription(id: Long, dto: TransactionDTO): ResponseEntity<?> |
++------------------------------+
+
++------------------------------+
+| Batch Configuration (class)  |
++------------------------------+
+| - FlatFileItemReader<Transaction>     |
+| - RepositoryItemWriter<Transaction>   |
+| +step1(): Step                         |
+| +job(): Job                            |
++------------------------------+
